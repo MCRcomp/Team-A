@@ -1,0 +1,193 @@
+<Version>1.0.1</Version>
+
+<ProgrammingBlock type="loop" loopType="RepeatForever"/>
+
+<ProgrammingBlock type="functionCall" function="displayText">
+    <Parameters>
+        <Parameter name="lineNumber" type="base typedef" default="line1" typeDef="tIQLCDLine">line1</Parameter>
+        <Parameter name="sString" type="string">76268 A</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="displayText">
+    <Parameters>
+        <Parameter name="lineNumber" type="base typedef" default="line1" typeDef="tIQLCDLine">line2</Parameter>
+        <Parameter name="sString" type="string">Team Fair And Square</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="displayText">
+    <Parameters>
+        <Parameter name="lineNumber" type="base typedef" default="line1" typeDef="tIQLCDLine">line3</Parameter>
+        <Parameter name="sString" type="string">Created By: Evan, Tejas</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="displayText">
+    <Parameters>
+        <Parameter name="lineNumber" type="base typedef" default="line1" typeDef="tIQLCDLine">line4</Parameter>
+        <Parameter name="sString" type="string">Arav, Andrew, Joshua</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="tankControl">
+    <Parameters>
+        <Parameter name="rightJoystick" type="base typedef" default="ChD" typeDef="TVexJoysticks">ChD</Parameter>
+        <Parameter name="leftJoystick" type="base typedef" default="ChA" typeDef="TVexJoysticks">ChA</Parameter>
+        <Parameter name="threshold" type="short" default="10">10</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="armControl">
+    <Parameters>
+        <Parameter name="armMotorPort" type="base typedef" default="motor10" typeDef="tMotor">liftArm</Parameter>
+        <Parameter name="upButton" type="base typedef" default="BtnLUp" typeDef="TVexJoysticks">BtnRUp</Parameter>
+        <Parameter name="downButton" type="base typedef" default="BtnLDown" typeDef="TVexJoysticks">BtnRDown</Parameter>
+        <Parameter name="armSpeed" type="short" default="75">75</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="loop" loopType="IfOnly">
+    <Parameters>
+        <Parameter name="LHS" type="typedef">getJoystickValue(BtnLUp)</Parameter>
+        <Parameter name="operator" type="typedef">==</Parameter>
+        <Parameter name="RHS" type="float">1</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="setMultipleMotors">
+    <Parameters>
+        <Parameter name="speed" type="short" default="50">100</Parameter>
+        <Parameter name="firstMotor" type="base typedef" default="motor1" typeDef="tMotor">ballIntake</Parameter>
+        <Parameter name="secondMotor" type="base typedef" default="noMotor" typeDef="tMotor">ballintake2</Parameter>
+        <Parameter name="thirdMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+        <Parameter name="fourthMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="end"/>
+
+<ProgrammingBlock type="loop" loopType="IfOnly">
+    <Parameters>
+        <Parameter name="LHS" type="typedef">getJoystickValue(BtnLDown)</Parameter>
+        <Parameter name="operator" type="typedef">==</Parameter>
+        <Parameter name="RHS" type="float">1</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="setMultipleMotors">
+    <Parameters>
+        <Parameter name="speed" type="short" default="50">-100</Parameter>
+        <Parameter name="firstMotor" type="base typedef" default="motor1" typeDef="tMotor">ballIntake</Parameter>
+        <Parameter name="secondMotor" type="base typedef" default="noMotor" typeDef="tMotor">ballintake2</Parameter>
+        <Parameter name="thirdMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+        <Parameter name="fourthMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="end"/>
+
+<ProgrammingBlock type="loop" loopType="IfOnly">
+    <Parameters>
+        <Parameter name="LHS" type="typedef">getJoystickValue(BtnEDown)</Parameter>
+        <Parameter name="operator" type="typedef">==</Parameter>
+        <Parameter name="RHS" type="float">1</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="moveMotor">
+    <Parameters>
+        <Parameter name="motorPort" type="base typedef" default="motor10" typeDef="tMotor">gateMotor</Parameter>
+        <Parameter name="quantity" type="float" default="1">0.25</Parameter>
+        <Parameter name="unitType" type="base typedef" default="rotations" typeDef="tMovementUnits">rotations</Parameter>
+        <Parameter name="speed" type="short" default="50">50</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="end"/>
+
+<ProgrammingBlock type="loop" loopType="IfOnly">
+    <Parameters>
+        <Parameter name="LHS" type="typedef">getJoystickValue(BtnEUp)</Parameter>
+        <Parameter name="operator" type="typedef">==</Parameter>
+        <Parameter name="RHS" type="float">1</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="moveMotor">
+    <Parameters>
+        <Parameter name="motorPort" type="base typedef" default="motor10" typeDef="tMotor">gateMotor</Parameter>
+        <Parameter name="quantity" type="float" default="1">-0.25</Parameter>
+        <Parameter name="unitType" type="base typedef" default="rotations" typeDef="tMovementUnits">rotations</Parameter>
+        <Parameter name="speed" type="short" default="50">50</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="end"/>
+
+<ProgrammingBlock type="loop" loopType="IfOnly">
+    <Parameters>
+        <Parameter name="LHS" type="typedef">getJoystickValue(BtnFUp)</Parameter>
+        <Parameter name="operator" type="typedef">==</Parameter>
+        <Parameter name="RHS" type="float">1</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="functionCall" function="stopMultipleMotors">
+    <Parameters>
+        <Parameter name="firstMotor" type="base typedef" default="motor1" typeDef="tMotor">ballIntake</Parameter>
+        <Parameter name="secondMotor" type="base typedef" default="noMotor" typeDef="tMotor">ballintake2</Parameter>
+        <Parameter name="thirdMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+        <Parameter name="fourthMotor" type="base typedef" default="noMotor" typeDef="tMotor">noMotor</Parameter>
+    </Parameters>
+</ProgrammingBlock>
+
+<ProgrammingBlock type="end"/>
+
+<ProgrammingBlock type="end"/>
+
+<RobotConfiguration>#pragma config(Motor,  motor1,          liftArm,       tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor2,          ballIntake,    tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor7,          rightMotor,    tmotorVexIQ, PIDControl, driveLeft, encoder)
+#pragma config(Motor,  motor8,          gateMotor,     tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor11,         ballintake2,   tmotorVexIQ, PIDControl, reversed, encoder)
+#pragma config(Motor,  motor12,         leftMotor,     tmotorVexIQ, PIDControl, reversed, driveRight, encoder)
+//*!!Code automatically generated by 'ROBOTC' configuration wizard               !!*//
+</RobotConfiguration>
+
+<CSource>#pragma config(Motor,  motor1,          liftArm,       tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor2,          ballIntake,    tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor7,          rightMotor,    tmotorVexIQ, PIDControl, driveLeft, encoder)
+#pragma config(Motor,  motor8,          gateMotor,     tmotorVexIQ, PIDControl, encoder)
+#pragma config(Motor,  motor11,         ballintake2,   tmotorVexIQ, PIDControl, reversed, encoder)
+#pragma config(Motor,  motor12,         leftMotor,     tmotorVexIQ, PIDControl, reversed, driveRight, encoder)
+//*!!Code automatically generated by 'ROBOTC' configuration wizard               !!*//
+
+
+task main()
+{
+	repeat (forever) {
+		displayText(line1, "76268 A");
+		displayText(line2, "Team Fair And Square");
+		displayText(line3, "Created By: Evan, Tejas");
+		displayText(line4, "Arav, Andrew, Joshua");
+		tankControl(ChD, ChA, 10);
+		armControl(liftArm, BtnRUp, BtnRDown, 75);
+		if (getJoystickValue(BtnLUp) == 1) {
+			setMultipleMotors(100, ballIntake, ballintake2, noMotor, noMotor);
+		}
+		if (getJoystickValue(BtnLDown) == 1) {
+			setMultipleMotors(-100, ballIntake, ballintake2, noMotor, noMotor);
+		}
+		if (getJoystickValue(BtnEDown) == 1) {
+			moveMotor(gateMotor, 0.25, rotations, 50);
+		}
+		if (getJoystickValue(BtnEUp) == 1) {
+			moveMotor(gateMotor, -0.25, rotations, 50);
+		}
+		if (getJoystickValue(BtnFUp) == 1) {
+			stopMultipleMotors(ballIntake, ballintake2, noMotor, noMotor);
+		}
+	}
+}
+</CSource>
